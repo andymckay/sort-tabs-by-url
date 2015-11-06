@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "Sort Tabs",
-  "version": "1.0",
+  "name": "Sort Tabs by URL",
+  "version": "0.4",
   "applications": {
     "gecko": {
-      "id": "sort-tabs@mozilla.org"
+      "id": "jid0-uRZpLu7VtYEF3IY7A2TpX21yj3A@jetpack"
     }
   },
   "browser_action": {
-      "default_title": "Sort tabs"
+      "default_title": "Sort tabs by URL"
   },
   "background": {
       "scripts": ["background.js"],
