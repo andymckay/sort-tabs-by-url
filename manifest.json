@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Sort Tabs by URL",
-  "version": "0.4",
+  "version": "0.5",
   "applications": {
     "gecko": {
       "id": "jid0-uRZpLu7VtYEF3IY7A2TpX21yj3A@jetpack"
@@ -11,10 +11,18 @@
       "default_title": "Sort tabs by URL"
   },
   "background": {
-      "scripts": ["background.js"],
-      "persistent": false
+      "scripts": ["background.js"]
   },
   "permissions": [
       "tabs"
-  ]
+  ],
+  "commands": {
+      "sort-tabs": {
+          "suggested_key": {
+              "default": "Ctrl+Shift+O",
+              "mac": "Command+Shift+O"
+          },
+          "description": "Sort tabs"
+      }
+  }
 }
