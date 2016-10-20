@@ -3,14 +3,14 @@ function sortTabs(a, b) {
 }
 
 function sort() {
-  chrome.tabs.query({pinned: true},
+  chrome.tabs.query({pinned: true, currentWindow: true},
     function(pinned) {
-      chrome.tabs.query({pinned: false},
+      chrome.tabs.query({pinned: false, currentWindow: true},
         function(tabs) {
           tabs.sort(sortTabs);
           chrome.tabs.move(
             tabs.map(function(i) { return i.id;}),
-            {windowId: 0, index: pinned.length}
+            {index: pinned.length}
           );
         }
       );
