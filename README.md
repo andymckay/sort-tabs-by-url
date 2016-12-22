@@ -1,3 +1,5 @@
+Test!
+
 Sorts tabs by URL. Access via accel-shift-o or the tools menu.
 
 Changes:
