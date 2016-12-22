@@ -1,3 +1,7 @@
+1
+
+Test
+
 Sorts tabs by URL. Access via accel-shift-o or the button.
 
 a-z icons from https://www.iconfinder.com/icons/905641/ascending_az_filters_sort_sorting_icon
