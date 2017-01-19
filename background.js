@@ -3,25 +3,30 @@ function sortTabs(a, b) {
 }
 
 function sort() {
-  chrome.tabs.query({pinned: true, currentWindow: true},
-    function(pinned) {
-      chrome.tabs.query({pinned: false, currentWindow: true},
-        function(tabs) {
-          tabs.sort(sortTabs);
-          chrome.tabs.move(
-            tabs.map(function(i) { return i.id;}),
-            {index: pinned.length}
-          );
-        }
-      );
-    }
-  );
+  browser.browserAction.setBadgeText({text: '...'});
+  let pinned_length = 0;
+  browser.tabs.query(
+    {pinned: true, currentWindow: true}
+  ).then((pinned) => {
+    pinned_length = pinned.length;
+    return browser.tabs.query(
+      {pinned: false, currentWindow: true}
+    )
+  }).then((tabs) => {
+    tabs.sort(sortTabs);
+    return browser.tabs.move(
+      tabs.map(function(i) { return i.id;}),
+      {index: pinned_length}
+    )
+  }).then(() => {
+    browser.browserAction.setBadgeText({text: ''});
+  });
 }
 
-chrome.browserAction.onClicked.addListener(function(aTab) {
+browser.browserAction.onClicked.addListener(function(aTab) {
   sort();
 });
 
-chrome.commands.onCommand.addListener(function(command) {
+browser.commands.onCommand.addListener(function(command) {
   sort();
 });
