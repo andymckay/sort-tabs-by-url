@@ -2,7 +2,11 @@ function sortTabs(a, b) {
   return (a.url.split('//')[1] || a.url) > (b.url.split('//')[1] || b.url);
 }
 
-function sort() {
+function sortTabsInverted(a, b) {
+  return sortTabs(b, a);
+}
+
+function sort(aToZ) {
   browser.browserAction.setBadgeText({text: '...'});
   let pinned_length = 0;
   browser.tabs.query(
@@ -13,7 +17,11 @@ function sort() {
       {pinned: false, currentWindow: true}
     )
   }).then((tabs) => {
-    tabs.sort(sortTabs);
+    if (aToZ) {
+      tabs.sort(sortTabs);
+    } else {
+      tabs.sort(sortTabsInverted);
+    }
     return browser.tabs.move(
       tabs.map(function(i) { return i.id;}),
       {index: pinned_length}
@@ -24,9 +32,35 @@ function sort() {
 }
 
 browser.browserAction.onClicked.addListener(function(aTab) {
-  sort();
+  sort(true);
 });
 
 browser.commands.onCommand.addListener(function(command) {
-  sort();
+  sort(true);
+});
+
+browser.menus.onClicked.addListener(function(menu) {
+  if (menu.menuItemId === "sort-tabs-inverted") {
+    sort(false);
+  } else {
+    sort(true);
+  }
+});
+
+browser.menus.create({
+  id: "sort-tabs",
+  title: "A-Z",
+  contexts: ["tools_menu", "browser_action"],
+  icons: {
+   16: "icon-16-context-menu.png",
+  },
+});
+
+browser.menus.create({
+  id: "sort-tabs-inverted",
+  title: "Z-A",
+  contexts: ["tools_menu", "browser_action"],
+  icons: {
+   16: "icon-16-context-menu-inverted.png",
+  },
 });
