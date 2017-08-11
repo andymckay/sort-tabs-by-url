@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Sort Tabs by URL",
-  "version": "0.6",
+  "version": "0.8",
   "applications": {
     "gecko": {
       "id": "jid0-uRZpLu7VtYEF3IY7A2TpX21yj3A@jetpack"
