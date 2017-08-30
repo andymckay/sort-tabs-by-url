@@ -22,7 +22,8 @@
   "permissions": [
       "contextMenus",
       "menus",
-      "tabs"
+      "tabs",
+      "runtime"
   ],
   "commands": {
       "sort-tabs": {
