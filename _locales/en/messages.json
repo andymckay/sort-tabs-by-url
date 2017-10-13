@@ -1,0 +1,8 @@
+{
+  "extensionName": {
+    "message": "Sort Tabs by URL"
+  },
+  "extensionCommand": {
+    "message": "Sort Tabs"
+  }
+}
