@@ -1,5 +1,9 @@
+function getKey(s) {
+  return (s.split('//')[1] || s).split('.').slice(-2).join('.')
+}
+
 function sortTabs(a, b) {
-  return (a.url.split('//')[1] || a.url) > (b.url.split('//')[1] || b.url);
+  return (getKey(a.url)) > (getKey(b.url));
 }
 
 function sortTabsInverted(a, b) {
