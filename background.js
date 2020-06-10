@@ -1,5 +1,5 @@
 function getKey(s) {
-  return (s.split('//')[1] || s).split('.').slice(-2).join('.'))
+  return (s.split('//')[1] || s).split('.').slice(-2).join('.')
 }
 
 function sortTabs(a, b) {
